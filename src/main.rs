@@ -2,6 +2,8 @@ use std::cmp::Ordering;
 use std::io;
 use rand::Rng;
 
+pub mod books;
+
 fn main()
 {
     println!("Start guessing game!");
@@ -16,7 +18,12 @@ fn main()
 
         //shadowing
         let guess: u32 = match guess.trim().parse() {
-            Ok(num) => num,
+            Ok(num) => {
+                if num > 100 {
+                    println!("oh you guess big number : {num}");
+                }
+                num
+            },
             Err(_) => continue,
         };
 
